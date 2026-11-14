@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Fruit Sense</string>
+    <string name="title_activity_main">Fruit Sense</string>
+    <string name="package_name">com.fruitsense.local</string>
+    <string name="custom_url_scheme">com.fruitsense.local</string>
+</resources>
