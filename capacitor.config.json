@@ -1,0 +1,12 @@
+{
+  "appId": "com.fruitsense.local",
+  "appName": "Fruit Sense",
+  "webDir": "www",
+  "server": {
+    "androidScheme": "http",
+    "cleartext": true
+  },
+  "android": {
+    "allowMixedContent": true
+  }
+}

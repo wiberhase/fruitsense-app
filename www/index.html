@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#1F7A4D">
+  <title>Fruit Sense</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icono.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+  <header class="barra">
+    <div class="marca">
+      <img src="icono.svg" alt="" width="28" height="28">
+      <span>Fruit Sense</span>
+    </div>
+    <div class="barra-der">
+      <select id="equipo" aria-label="Equipo"></select>
+      <button id="btn-ajustes" class="icono" aria-label="Ajustes" title="Ajustes">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12M20 18h0"/><circle cx="16" cy="6" r="2"/><circle cx="10" cy="12" r="2"/><circle cx="18" cy="18" r="2"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <div id="aviso" class="aviso" hidden></div>
+
+    <section class="tarjeta" id="ahora">
+      <div class="tarjeta-titulo">
+        <h2>Ahora</h2>
+        <span id="conexion" class="insignia">—</span>
+      </div>
+      <div id="ahora-cuerpo" class="vacio-texto">Esperando datos del medidor…</div>
+    </section>
+
+    <section class="tarjeta">
+      <div class="tarjeta-titulo">
+        <h2>Resumen</h2>
+        <div class="segmentos" role="tablist">
+          <button data-rango="hoy" class="activo">Hoy</button>
+          <button data-rango="todo">Todo</button>
+        </div>
+      </div>
+      <div id="resumen"></div>
+    </section>
+
+    <section class="tarjeta">
+      <div class="tarjeta-titulo">
+        <h2>Jitomates medidos</h2>
+        <span id="total" class="tenue"></span>
+      </div>
+      <ul id="lista" class="lista"></ul>
+    </section>
+  </main>
+
+  <!-- Ajustes -->
+  <dialog id="dlg-ajustes">
+    <form method="dialog" class="dlg-cabeza">
+      <h2>Ajustes</h2>
+      <button class="icono" aria-label="Cerrar">&times;</button>
+    </form>
+
+    <div id="bloque-servidor" class="bloque">
+      <h3>Servidor</h3>
+      <p class="tenue">Dirección de la PC con XAMPP (la misma red Wi-Fi que el teléfono).</p>
+      <label>Dirección<input id="servidor" placeholder="http://192.168.1.100/fruitsense" inputmode="url"></label>
+      <button id="guardar-servidor" class="boton">Conectar</button>
+    </div>
+
+    <div class="bloque">
+      <h3>Calibración de entorno</h3>
+      <p class="tenue">Deja la cámara vacía con el LED encendido y presiona el botón. Las siguientes lecturas serán la referencia para saber cuándo hay un jitomate.</p>
+      <button id="recalibrar" class="boton secundario">Recalibrar entorno</button>
+    </div>
+
+    <div class="bloque">
+      <h3>Detección y etapas</h3>
+      <div class="rejilla">
+        <label>Cambio para detectar jitomate (%)<input id="a-umbral" type="number" min="1" max="200" step="1"></label>
+        <label>Lados por jitomate<input id="a-lados" type="number" min="1" max="6"></label>
+        <label>Tiempo máximo entre lados (s)<input id="a-entre" type="number" min="5" max="3600"></label>
+        <label>Lecturas mínimas por lado<input id="a-min" type="number" min="1" max="20"></label>
+        <label>Tono Verde desde (°)<input id="a-hue_verde" type="number" step="1"></label>
+        <label>Tono Rompiente desde (°)<input id="a-hue_rompiente" type="number" step="1"></label>
+        <label>Tono Cambiante desde (°)<input id="a-hue_cambiante" type="number" step="1"></label>
+        <label>Tono Rosado desde (°)<input id="a-hue_rosado" type="number" step="1"></label>
+        <label>Tono Rojo claro desde (°)<input id="a-hue_rojo_claro" type="number" step="1"></label>
+      </div>
+      <label>PIN<input id="pin" type="password" inputmode="numeric" autocomplete="off"></label>
+      <button id="guardar-ajustes" class="boton">Guardar ajustes</button>
+      <p id="msg-ajustes" class="tenue" role="status"></p>
+    </div>
+  </dialog>
+
+  <!-- Detalle de un jitomate -->
+  <dialog id="dlg-detalle">
+    <form method="dialog" class="dlg-cabeza">
+      <h2>Medición</h2>
+      <button class="icono" aria-label="Cerrar">&times;</button>
+    </form>
+    <div id="detalle"></div>
+  </dialog>
+
+  <script src="app.js"></script>
+</body>
+</html>
